@@ -1,0 +1,154 @@
+
+/*
+LAB 2- Control multiple LED blinking patterns, with one button
+Alisa Maria Wronski 
+DIGF2B03 PhysicalComputing
+OCAD University
+Created on Sun Jan 18 2015
+
+Based on:
+Button Example, Free Domain, Arduino program
+CIRC-02, Oomlout,  http://ardx.org/CODE02 
+Button, Tom Igo and DojoDave, http://www.arduino.cc/en/Tutorial/Button
+
+Questions I have:
+
+Why is it that "if (digitalRead(inputPin) == LOW)" 
+it turns on the LED. Should it not be "HIGH" instead of LOW?
+
+What does the "if else" mean?
+
+How do I interrupt the blinking sequence by pressing the button?
+
+How do I make a sequence loop without having to rewrite the code?
+
+ */ 
+ 
+int ledPins[] = {2,3,4,5,6};  //pins connected to LED
+int inputPin = 9;             // button  
+
+void setup()
+{
+   //Set each pin connected to an LED to output mode (pulling high (on) or low (off)
+  pinMode(ledPins[0],OUTPUT);
+  pinMode(ledPins[1],OUTPUT);
+  pinMode(ledPins[2],OUTPUT);
+  pinMode(ledPins[3],OUTPUT);
+  pinMode(ledPins[4],OUTPUT);
+  pinMode(inputPin, INPUT);
+  }        
+  
+void loop()                    
+{
+// first blinking sequence, from outside in then back
+
+ if (digitalRead(inputPin) == LOW) {  //when button pressed
+  digitalWrite(ledPins[0], HIGH);    
+  digitalWrite(ledPins[4], HIGH);    //turn on outer most LEDs
+  delay(500);                        //after 500 milliseconda
+  digitalWrite(ledPins[1], HIGH);   
+  digitalWrite(ledPins[3], HIGH);    //turn on the next ones
+  delay(500);                
+  digitalWrite(ledPins[2], HIGH);    //turn on center LED
+  delay(500);
+  digitalWrite(ledPins[2], LOW);     //turn off center LED
+  delay(500);
+  digitalWrite(ledPins[1], LOW);  
+  digitalWrite(ledPins[3], LOW); 
+  delay(500);    
+  digitalWrite(ledPins[0], LOW);  
+  digitalWrite(ledPins[4], LOW);      //turns off outer most LEDs last
+  delay(500);                  
+
+
+
+
+// second sequence makes the light snake across the LEDs 
+
+
+ }  if (digitalRead(inputPin) == LOW) {
+   
+  digitalWrite(ledPins[0], HIGH); 
+  delay(100);
+  digitalWrite(ledPins[0], LOW); 
+  delay (100);
+  digitalWrite(ledPins[1], HIGH);
+  delay(100);
+  digitalWrite(ledPins[1], LOW);  
+  delay (100);
+  digitalWrite(ledPins[2], HIGH);
+  delay (100);
+  digitalWrite(ledPins[2], LOW);   
+  delay (100);
+  digitalWrite(ledPins[3], HIGH); 
+  delay (100);
+  digitalWrite(ledPins[3], LOW);  
+  delay (100);
+  digitalWrite(ledPins[4], HIGH); 
+  delay (100);
+  digitalWrite(ledPins[4], LOW);  
+  delay(100);
+  
+  
+
+// third sequence turns on LED one by one, once all lit turns them off one at at time
+
+
+ }  if (digitalRead(inputPin) == LOW) { 
+  digitalWrite(ledPins[0], HIGH); 
+  digitalWrite(ledPins[1], HIGH);  
+  digitalWrite(ledPins[2], HIGH);   
+  digitalWrite(ledPins[3], HIGH);  
+  digitalWrite(ledPins[4], HIGH);  
+   delay(1000);
+   
+  digitalWrite(ledPins[0], LOW);  
+  digitalWrite(ledPins[1], LOW);  
+  digitalWrite(ledPins[2], LOW);   
+  digitalWrite(ledPins[3], LOW);  
+  digitalWrite(ledPins[4], LOW);  
+   delay(1000) ;
+
+
+   
+//fourth sequence makes alternating light blink twice
+
+  
+}  if (digitalRead(inputPin) == LOW)
+{ 
+ digitalWrite(ledPins[0], HIGH); 
+ digitalWrite(ledPins[2], HIGH);
+ digitalWrite(ledPins[4], HIGH);  
+ delay(500);    
+ digitalWrite(ledPins[0], LOW); 
+ digitalWrite(ledPins[2], LOW);
+ digitalWrite(ledPins[4], LOW);  
+ delay(100);
+
+  digitalWrite(ledPins[1], HIGH);       
+  digitalWrite(ledPins[3], HIGH); 
+  delay(500);    
+  digitalWrite(ledPins[3], LOW); 
+  digitalWrite(ledPins[1], LOW);  
+  delay(500);    
+    
+ digitalWrite(ledPins[0], HIGH);   //fourth blink sequence repeates here
+ digitalWrite(ledPins[2], HIGH);
+ digitalWrite(ledPins[4], HIGH);  
+ delay(500);    
+  
+ digitalWrite(ledPins[0], LOW); 
+ digitalWrite(ledPins[2], LOW);
+ digitalWrite(ledPins[4], LOW);  
+ delay(100);
+
+ digitalWrite(ledPins[1], HIGH);       
+ digitalWrite(ledPins[3], HIGH); 
+ delay(500);    
+  
+ digitalWrite(ledPins[3], LOW); 
+ digitalWrite(ledPins[1], LOW);  
+ delay(500);   
+ }
+}
+
