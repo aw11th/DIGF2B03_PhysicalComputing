@@ -1,0 +1,44 @@
+/*
+LAB 2- Control multiple LED blinking patterns, with one button
+Alisa Maria Wronski 
+DIGF2B03 PhysicalComputing
+OCAD University
+Created on Sun Jan 18 2015
+
+Based on:
+Blink Example, Free Domain, Arduino program
+
+ */ 
+ 
+int led = 13;
+int led2 = 3;
+int led3 = 5;
+
+void setup() {                
+  pinMode(led, OUTPUT);     
+  pinMode(led2, OUTPUT);     
+  pinMode(led3, OUTPUT);     
+
+}
+
+void loop() 
+{
+  //small hoop fast blink
+  digitalWrite(led, HIGH);
+delay (20);
+  digitalWrite(led, LOW);  
+delay (20);
+
+//middle hoop half speed
+ digitalWrite(led2, HIGH);  
+ delay (50);
+ digitalWrite(led2, LOW); 
+delay (50);
+
+//large hoop, slowest blink
+digitalWrite(led3, HIGH); 
+delay (100);
+ digitalWrite(led3, LOW);  
+delay (100);
+
+}
