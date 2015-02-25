@@ -1,0 +1,88 @@
+
+#include <Servo.h> 
+ #include "pitches.h"
+
+ //SERVO
+Servo myservo;  // create servo object to control a servo 
+ 
+int potpin = 0;  // analog pin used to connect the potentiometer
+int val;    // variable to read the value from the analog pin 
+ 
+ 
+ //SPEAKER
+ int melody[] = {
+  NOTE_C4, NOTE_G3,NOTE_G3, NOTE_A3, NOTE_G3,0, NOTE_B3, NOTE_C4};
+
+ int noteDurations[] = {
+  4, 8, 8, 4,4,4,4,4 };
+  
+   int Speaker = 3;
+
+//LEDS
+ const int ledPin1 =  1; 
+ const int ledPin2 =  2; 
+ const int ledPin4 =  4; 
+ const int ledPin5 =  5; 
+ const int ledPin7 =  7; 
+ const int ledPin8 =  8; 
+ const int ledPin10 =  10; 
+ const int ledPin11 =  11; 
+ const int ledPin12 =  12; 
+ const int ledPin13 =  13; 
+ 
+int ledState = LOW;
+long previousMillis = 0;   
+
+long interval = 300; 
+ 
+void setup() 
+{ 
+  myservo.attach(6);  // attaches the servo on pin 9 to the servo object 
+  pinMode (Speaker, OUTPUT);
+
+  
+    for (int thisNote = 0; thisNote < 8; thisNote++) {
+    int noteDuration = 1000/noteDurations[thisNote];
+    tone(3, melody[thisNote],noteDuration);
+       int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+    noTone(3);
+    
+   pinMode(ledPin1, OUTPUT);      
+   pinMode(ledPin2, OUTPUT);      
+   pinMode(ledPin4, OUTPUT);      
+   pinMode(ledPin5, OUTPUT);      
+   pinMode(ledPin7, OUTPUT);      
+   pinMode(ledPin8, OUTPUT);      
+   pinMode(ledPin10, OUTPUT);
+   pinMode(ledPin11, OUTPUT);         
+   pinMode(ledPin12, OUTPUT);      
+   pinMode(ledPin13, OUTPUT);      
+ 
+  }
+} 
+ 
+ 
+ 
+void loop() 
+
+{ 
+      digitalWrite(Speaker, HIGH);  
+
+
+  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023) 
+  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180) 
+  myservo.write(val);                  // sets the servo position according to the scaled value 
+  delay(15);                           // waits for the servo to get there 
+
+   digitalWrite(ledPin1, HIGH);
+           digitalWrite(ledPin2, HIGH);
+           digitalWrite(ledPin4, HIGH);
+           digitalWrite(ledPin5, HIGH);
+           digitalWrite(ledPin7, HIGH);
+           digitalWrite(ledPin8, HIGH);
+           digitalWrite(ledPin10, HIGH);
+           digitalWrite(ledPin11, HIGH);
+           digitalWrite(ledPin12, HIGH);
+           digitalWrite(ledPin13, HIGH); 
+} 
